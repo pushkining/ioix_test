@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>   -->
+    <!-- <script src="https://www.news24.jp/js/jsonp.category.js"></script> -->
+    <!-- <script src="https://www.news24.jp/js/utils.js"></script> -->
+    <!-- <script src="https://www.news24.jp/js/jsonp.attentionNews.js"></script> -->
+    
+</head>
+<body>
+    <h1></h1>
+    <p class="dateOf"></p>
+    <h2></h2>
+    
+
+<script type="text/javascript">
+        var arrNewsHeadLine = {}; 
+        var publishTime;
+        var callbackCategory = function(data) {           
+        arrNewsHeadLine = data.articleList;
+        publishTime = data.publishTime.dateValue;               
+        }
+    </script>
+
+    <script type="text/javascript" src="https://www.news24.jp/international/index.jsonp"></script>
+
+    <script>
+        var testHeads = [];
+        let theme = document.querySelector('h1');
+        let heades = document.querySelector('h2');
+        let dateOf = document.querySelector('.dateOf');
+        // console.log(arrNewsHeadLine);
+        for(val of arrNewsHeadLine) {
+            let arrNewsHeadLineVal = val.newsHeadLine; 
+            //console.log(arrNewsHeadLineVal);
+            testHeads.push(val.newsHeadLine);
+            }
+        theme.innerHTML = 'https://www.news24.jp';
+        console.log(publishTime);
+        dateOf.innerHTML = publishTime;
+        for(let i = 0; i < testHeads.length; i++) {
+            
+            heades.innerHTML += `${[i]}:${testHeads[i]}<br>`;
+        }
+
+        //console.log(testHeads);
+    </script>
+</body>
+</html>
